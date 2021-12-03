@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ShopIt Website</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js" 
+    ></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.0/socket.io.min.js'></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id = "v-app">
+        <h3>{{ title }}</h3>
+        <div class="container">
+            <div class="heading">
+                <h1><span class="shopper">s</span> Shopping Cart</h1>
+            </div>
+            
+            <div class="cart transition is-open">
+                <div class="table">
+                    <div class="layout-inline row th">
+                        <div class="col col-pro">Product</div>
+                        <div class="col col-price align-center "> 
+                        Price
+                        </div>
+                        <div class="col">URL</div>
+                    </div>
+                
+                    <div class="layout-inline row"
+                        v-bind:class="{ 'row-bg2': index % 2 == 0 }"
+                        v-for="(product, index) in products">
+                        
+                        <div class="col col-pro layout-inline">
+                        <img v-bind:src="product.img" alt="product.alt" />
+                        <p>{{product.productName}}</p>
+                        </div>
+                        
+                        <div class="col col-price col-numeric align-center ">
+                        <p>{{product.price}} {{product.currency}}</p>
+                        </div>
+            
+                        
+                        <div class="col col-vat col-numeric">
+                        <p>{{product.urlOfSale}}</p>
+                        </div>
+                        <div class="col col col-numeric">
+                          <button class="btn" @click.prevent="placeOrder(product, index)">Place Order</a>
+                        </div>
+                        
+                    </div>    
+                </div>
+           </div>
+            
+       </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
