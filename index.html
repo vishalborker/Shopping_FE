@@ -11,11 +11,37 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    
     <div id = "v-app">
+        <div class="overlay" v-if="loading">
+            <div class="overlay__inner">
+                <div class="overlay__content"><span class="spinner"></span></div>
+            </div>
+        </div>
         <h3>{{ title }}</h3>
-        <div class="container">
+        <h5>Query URL => {{queryURL}}</h5>
+
+        <div class="w3-clear nextprev margin-down">
+            <button class="w3-left w3-btn"  @click="handleShowOrders()">Show Orders</button>
+            <button class="w3-right w3-btn"  @click="handleShowCart()">Show Cart</button>
+        </div>
+        <div class="notification-popup no-print" v-if="newOrderPlacedFlag">
+            Order Was placed from: {{newOrderPlaced.urlOfSale}}
+            <span>Bought: {{newOrderPlaced.productIds.join()}}</span>
+            <span>Price: {{newOrderPlaced.price}} - {{newOrderPlaced.currency}}</span>
+
+            <div class="actions">    
+                <button mat-button="" class="mat-focus-indicator mat-button mat-button-base" @click="closePopup()"><span class="mat-button-wrapper"> OK, got it </span>
+                    <span matripple="" class="mat-ripple mat-button-ripple"></span><span class="mat-button-focus-overlay"></span>
+                </button>
+            </div>
+        </div>
+        <div class="productplaced-popup no-print" v-if="newProductPlaced">
+            Order placed!
+        </div>
+        <div class="container" v-if="showCart">
             <div class="heading">
-                <h1><span class="shopper">s</span> Shopping Cart</h1>
+                <h1>Shopping Cart</h1>
             </div>
             
             <div class="cart transition is-open">
@@ -33,23 +59,69 @@
                         v-for="(product, index) in products">
                         
                         <div class="col col-pro layout-inline">
-                        <img v-bind:src="product.img" alt="product.alt" />
-                        <p>{{product.productName}}</p>
+                          <img v-bind:src="product.img" alt="product.alt" />
+                          <p>{{product.productName}}</p>
                         </div>
                         
                         <div class="col col-price col-numeric align-center ">
-                        <p>{{product.price}} {{product.currency}}</p>
+                          <p>{{product.price}} {{product.currency}}</p>
                         </div>
             
-                        
                         <div class="col col-vat col-numeric">
-                        <p>{{product.urlOfSale}}</p>
+                          <p>{{product.urlOfSale}}</p>
                         </div>
                         <div class="col col col-numeric">
-                          <button class="btn" @click.prevent="placeOrder(product, index)">Place Order</a>
+                          <button class="btn" @click="placeOrder(product, index)">Place Order</a>
                         </div>
                         
                     </div>    
+                </div>
+           </div>
+            
+       </div>
+
+       <div class="container" v-if="showOrders">
+            <div class="heading">
+                <h1>Orders</h1>
+            </div>
+            
+            <div class="cart transition is-open">
+                <div class="table">
+                    <div class="layout-inline row th">
+                        <div class="col-order">Order Id</div>
+                        <div class="col-order">Product</div>
+                        <div class="col-order price"> 
+                        Price
+                        </div>
+                        <div class="col-url">URL</div>
+                        <div class="col-order">Order Date</div>
+                    </div>
+                
+                    <div class="layout-inline row"
+                        v-bind:class="{ 'row-bg2': index % 2 == 0 }"
+                        v-for="(order, index) in orders">
+                        <div class="col-order layout-inline">
+                           <p>{{order.orderId}}</p>
+                        </div>
+                        <div class="col-order layout-inline">
+                          <p>{{order.productIds.join()}}</p>
+                        </div>
+                        
+                        <div class="col-order price">
+                          <p>{{order.price}} {{order.currency}}</p>
+                        </div>
+            
+                        <div class="col-url">
+                          <p>{{order.urlOfSale}}</p>
+                        </div>   
+                        <div class="col-order">
+                          <p>{{order.orderDate}}</p>
+                        </div>                        
+                    </div>    
+                </div>
+                <div class="w3-clear nextprev">
+                    <button class="w3-left w3-btn" v-bind:class="{ disabled: disablePrevBtn === true }" @click="loadPrevious()">❮ Previous</button>
+                    <button class="w3-right w3-btn" @click="loadNext()">Next ❯</button>
                 </div>
            </div>
             
