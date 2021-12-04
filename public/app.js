@@ -1,4 +1,4 @@
-const API_URL = 'http://246f-117-223-63-195.ngrok.io';
+const API_URL = 'https://3e7a-117-223-63-195.ngrok.io';
 // const API_URL = 'http://localhost:3003';
 const products = [{
         price: 155,
@@ -43,12 +43,20 @@ const app = new Vue({
         disablePrevBtn: true,
         loading: false,
         newProductPlaced: false,
+        orderPlaceFailed: false,
+        errorMessage: '',
     },
     methods: {
         showOrderPlacedPopup() {
           this.newProductPlaced = true;
           setTimeout(() => {
             this.newProductPlaced = false;
+          }, 5000);
+        },
+        showOrderPlacedFailedPopup() {
+          this.orderPlaceFailed = true;
+          setTimeout(() => {
+            this.orderPlaceFailed = false;
           }, 5000);
         },
         async placeOrder(product, index) {
@@ -71,8 +79,13 @@ const app = new Vue({
               });
               const content = await rawResponse.json();
               this.loading = false;
-              this.showOrderPlacedPopup();
-              console.log('Order Created on DB if accepted!!', content);
+              console.log('Order Created on DB if accepted!!!!!', content);
+              if(content._id) {
+                this.showOrderPlacedPopup();
+              } else {
+                this.errorMessage = content.message;
+                this.showOrderPlacedFailedPopup();
+              }
           } catch(err) {
             this.loading = false;
             console.log('Some error occured in placeOrder!', err);
