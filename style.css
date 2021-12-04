@@ -2,17 +2,20 @@ html {
     background: #bbc3c6;
     font: 62.5%/1.5em "Trebuchet Ms", helvetica;
   }
+
+  body {
+    font-family: "Roboto","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+    font-size: 16px;
+    font-size: 1.6rem;
+    -webkit-font-smoothing: antialiased;
+    }
   
   * {
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     font-smoothing: antialiased;
   }
-  
-  @font-face {
-      font-family: 'Shopper';
-      src: url('http://www.shopperfont.com/font/Shopper-Std.ttf');
-  }
+
   
   .shopper {
     text-transform: lowercase;
@@ -20,24 +23,102 @@ html {
     line-height: 0.5em;
     display: inline-block;
   }
+
+  .notification-popup {
+    background: #fafafa;
+    color: #000000de;
+    box-shadow: 0 3px 5px -1px #0003,0 6px 10px #00000024,0 1px 18px #0000001f;
+    border-radius: 4px;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    margin: 24px;
+    max-width: 430px;
+    padding: 16px 16px 8px;
+    z-index: 1001;
+  }
+
+  .productplaced-popup {
+    background: red;
+    color: white;
+    box-shadow: 0 3px 5px -1px #0003,0 6px 10px #00000024,0 1px 18px #0000001f;
+    border-radius: 4px;
+    top: 0;
+    right: 0;
+    position: fixed;
+    margin: 24px;
+    max-width: 430px;
+    padding: 16px 16px 8px;
+    z-index: 1001;
+    font-weight: bolder;
+  }
+
+  .cookies-popup .actions {
+    display: flex;
+    justify-content: flex-end;
+    margin: 16px -8px 0 0;
+  }
+
+  .cookies-popup .actions .mat-button {
+    color: #1976d2;
+  }
+
+  .cookies-popup .actions .mat-button {
+    text-transform: uppercase;
+  }
+
+
+  .mat-button-wrapper {
+    color: blue;
+    font-weight: bold;
+  }
+  .mat-button, .mat-icon-button, .mat-stroked-button {
+    color: inherit;
+    background: transparent;
+    }
+
+    .mat-button:hover {
+      background-color: grey;
+    }
+   .mat-button, .mat-icon-button, .mat-stroked-button, .mat-flat-button {
+    box-sizing: border-box;
+    position: relative;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    -webkit-tap-highlight-color: transparent;
+    display: inline-block;
+    white-space: nowrap;
+    text-decoration: none;
+    vertical-align: baseline;
+    text-align: center;
+    margin: 0;
+    min-width: 64px;
+    line-height: 36px;
+    border-radius: 4px;
+    overflow: visible;
+    }
   
   
   
   h1 {
     text-transform: uppercase;
     font-weight: bold;
-    font-size: 2.5em;
+    font-size: 1em;
   }
   
   p {
-    font-size: 1.5em;
+    font-size: 1em;
     color: #8a8a8a;
   }
   
   input {
     border: 0.3em solid #bbc3c6;
     padding: 0.5em 0.3em; 
-    font-size: 1.4em;
+    font-size: 1em;
     color: #8a8a8a;
     text-align: center;
   }
@@ -57,6 +138,7 @@ html {
   }
   
   .container {
+    margin-top: 20px;
     max-width: 75em;
     width: 95%;
     margin: 40px auto;  
@@ -108,14 +190,14 @@ html {
     color: #fff;
     text-transform: uppercase;
     font-weight: bold;
-    font-size: 1.5em;
+    font-size: 1em;
   }
   
   .tf {
     background: #f34d35;
     text-transform: uppercase;
     text-align: right;
-    font-size: 1.2em;  
+    font-size: 1em;  
   }
   
   .tf p {
@@ -127,6 +209,62 @@ html {
     padding: 1em;
     width: 22%;
   }
+
+  .col-order {
+    padding: 1em;
+    width: 15%;
+  }
+  .col-order .price {
+    width: 10%;
+  }
+
+  .col-url {
+    width: 20%;
+  }
+
+  .w3-clear:before, .w3-bar:before, .w3-bar:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  span.currentpage:before, span.currentpage:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .nextprev button.w3-right, .nextprev button.w3-left {
+    background-color: #04AA6D;
+    color: #ffffff;
+    border-color: #04AA6D;
+    }
+    .w3-btn, .w3-btn:link, .w3-btn:visited {
+      color: #FFFFFF;
+      background-color: #4CAF50;
+    }
+    .nextprev button {
+      font-size: 18px;
+      font-family: 'Source Sans Pro', sans-serif;
+      padding-left: 19px;
+      padding-right: 19px;
+      border: 1px solid #cccccc;
+      border-radius: 5px;
+      padding: 20px;
+    }
+
+    .nextprev .margin-down {
+      margin-bottom: 20px;
+    }
+    .w3-left {
+      float: left!important;
+    }
+    .w3-right {
+      float: right!important;
+    }
+    .w3-btn {
+      padding: 10px;
+    }
   
   .col-pro {
     width: 30%;
@@ -142,7 +280,7 @@ html {
   }
   
   .col-numeric p {
-    font: bold 1.8em helvetica;
+    font: bold 1em helvetica;
   }
   
   .col-total p {
@@ -180,30 +318,17 @@ html {
     max-width: 2.6em;
   }
   
-  
-  a.qty {
-    width: 1em;
-    line-height: 1em;
-    border-radius: 2em;
-    font-size: 2.5em;
-    font-weight: bold;
-    text-align: center;
-    background: #43ace3;  
-    color: #fff;
-  }
-  
   a.qty:hover {
     background: #3b9ac6;
   }
   
   .btn {
-    padding: 10px 30px;
+    padding: 10px 10px;
     border-radius: 0.3em;
-    font-size: 1.4em;
+    font-size: 1em;
     font-weight: bold;
     background: #43ace3;
     color: #fff;
-    box-shadow: 0 3px 0 rgba(59,154,198, 1)
   }
   
   .btn:hover {
@@ -217,6 +342,9 @@ html {
   
   .transition {
     transition: all 0.3s ease-in-out;
+  }
+  .disabled {
+    cursor: not-allowed;
   }
   
   @media screen and ( max-width: 755px) {
@@ -237,6 +365,50 @@ html {
       margin-bottom: 1em;
     }
   }
+
+  .overlay {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background: #222;
+    z-index: 999;
+    opacity: 0.2;
+}
+
+.overlay__inner {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.overlay__content {
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.spinner {
+    width: 75px;
+    height: 75px;
+    display: inline-block;
+    border-width: 2px;
+    border-color: rgba(255, 255, 255, 0.05);
+    border-top-color: #fff;
+    animation: spin 1s infinite linear;
+    border-radius: 100%;
+    border-style: solid;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
   
   @media screen and ( max-width: 591px) {
     
