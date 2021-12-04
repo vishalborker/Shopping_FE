@@ -39,6 +39,10 @@
         <div class="productplaced-popup no-print" v-if="newProductPlaced">
             Order placed!
         </div>
+        <div class="productplaced-popup no-print" v-if="orderPlaceFailed">
+            Order placing failed!
+            {{errorMessage}}
+        </div>
         <div class="container" v-if="showCart">
             <div class="heading">
                 <h1>Shopping Cart</h1>
